@@ -9,6 +9,9 @@ import testing.hamcrest.Vector;
 
 import java.util.stream.Stream;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+
 public class VectorTest {
     public static Stream<Arguments> vectorLengthCalculateProperlySource() {
         return Stream.of(Arguments.of(3, 4, 5));
@@ -38,5 +41,12 @@ public class VectorTest {
         Vector vector = new Vector();
         double actual = vector.length(x, y);
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void vectorShouldBePositiveWhenArgumentNegative() {
+        Vector vector = new Vector();
+        double actual = vector.length(-8, -3);
+        assertThat(actual, greaterThanOrEqualTo(0.0));
     }
 }// class
